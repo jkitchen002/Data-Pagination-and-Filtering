@@ -39,16 +39,14 @@ This function will create and insert/append the elements needed for the paginati
       const linkList = document.querySelector('.link-list');
       linkList.innerHTML='';
          for (let i = 1; i <= numOfPages; i++){
-            const button = document.createElement('button');
-            linkList.insertAdjacentHTML('beforeend', 
+               linkList.insertAdjacentHTML('beforeend', 
                `<li>
                   <button type="button">${i}</button>
-                </li>`)
-         //   const firstBtn = document.querySelector('ul')
-         //   firstBtn.firstChild
-           button.classList.add("active");
-
+               </li>`)
+               linkList.firstElementChild.firstElementChild.classList.add("active");
          };
+
+         
 
          // linkList.addEventListener('click', (e) => {
 
