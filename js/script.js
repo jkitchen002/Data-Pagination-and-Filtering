@@ -10,7 +10,7 @@ function showPage(list, page) {
    
    const studentList = document.querySelector('.student-list');
    studentList.innerHTML='';
-   // Loop through data and using template literal display on page
+   // Loop through data and using template literal display to screen
    for(let i = 0; i<list.length; i++) {
       if(i >= startIndex && i< endIndex) {
          let display =  `<li class="student-item cf">
@@ -34,9 +34,28 @@ Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
 
-function addPagination(list) {
-   console.log(list)
-};
+   function addPagination(list) {
+      const numOfPages = Math.ceil(list.length / 9);
+      const linkList = document.querySelector('.link-list');
+      linkList.innerHTML='';
+         for (let i = 1; i <= numOfPages; i++){
+            const button = document.createElement('button');
+            linkList.insertAdjacentHTML('beforeend', 
+               `<li>
+                  <button type="button">${i}</button>
+                </li>`)
+         //   const firstBtn = document.querySelector('ul')
+         //   firstBtn.firstChild
+           button.classList.add("active");
+
+         };
+
+         // linkList.addEventListener('click', (e) => {
+
+         // });
+   }; 
+
+   
 
 
 
@@ -44,3 +63,4 @@ function addPagination(list) {
 
 // Call functions
 showPage(data, 1)
+addPagination(data)
