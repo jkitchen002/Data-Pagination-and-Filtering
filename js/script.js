@@ -1,4 +1,39 @@
 /*
+Create the search bar
+*/
+
+function searchBar() {
+  const header = document.querySelector('header');
+  const display = `<label for="search" class="student-search">
+    <input id="search" placeholder="Search by name...">
+    <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+  </label>`;
+
+  header.insertAdjacentHTML('beforeend', display);
+}
+searchBar();
+
+const search = document.querySelector('#search');
+
+search.addEventListener('keyup', (e) => {
+  const searchInput = e.target.value.toLowerCase();
+  let searchResults = [];
+
+  for (let i = 0; i <= data.length; i++) {
+    const studentName = `${data[i].name.first.toLowerCase()} ${data[
+      i
+    ].name.last.toLowerCase()}`;
+
+    if (studentName.includes(searchInput)) {
+      searchResults.push(data[i]);
+
+      showPage(searchResults, 1);
+      addPagination(searchResults);
+    }
+  }
+});
+
+/*
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
@@ -17,7 +52,7 @@ function showPage(list, page) {
       let display = `<li class="student-item cf">
         <div class="student-details">
           <img class="avatar" src="${list[i].picture.large}">
-          <h3>${list[i].name.first} ${list[i].name.last}</h3>
+          <h3 class="name">${list[i].name.first} ${list[i].name.last}</h3>
           <span class="email">${list[i].email}</span>
         </div>
         <div class="joined-details">
