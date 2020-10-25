@@ -30,6 +30,14 @@ search.addEventListener('keyup', (e) => {
       showPage(searchResults, 1);
       addPagination(searchResults);
     }
+    if (searchInput !== studentName) {
+      const main = document.querySelector('.main');
+      const display = `<h2 style="color: tomato; font-size: 36px; font-weight: 800; text-align: center">
+      ${searchInput} Was Not Found
+      </h2>`;
+
+      main.insertAdjacentHTML('beforeend', display);
+    }
   }
 });
 
