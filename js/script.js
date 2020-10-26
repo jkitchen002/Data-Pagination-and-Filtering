@@ -20,24 +20,24 @@ search.addEventListener('keyup', (e) => {
   let searchResults = [];
 
   for (let i = 0; i <= data.length; i++) {
-    const studentName = `${data[i].name.first.toLowerCase()} ${data[
+    const StudentList = `${data[i].name.first.toLowerCase()} ${data[
       i
     ].name.last.toLowerCase()}`;
 
-    if (studentName.includes(searchInput)) {
+    if (StudentList.includes(searchInput)) {
       searchResults.push(data[i]);
 
       showPage(searchResults, 1);
       addPagination(searchResults);
     }
-    if (searchInput !== studentName) {
-      const main = document.querySelector('.main');
-      const display = `<h2 style="color: tomato; font-size: 36px; font-weight: 800; text-align: center">
-      ${searchInput} Was Not Found
+  }
+  if (searchResults.length === 0) {
+    const main = document.querySelector('.main');
+    const display = `<h2 style="color: tomato; font-size: 36px; font-weight: 800; text-align: center">
+      Nothing Was Found
       </h2>`;
 
-      main.insertAdjacentHTML('beforeend', display);
-    }
+    main.insertAdjacentHTML('beforeend', display);
   }
 });
 
