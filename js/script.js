@@ -1,3 +1,4 @@
+const studentList = document.querySelector('.student-list');
 /*
 Create the search bar
 */
@@ -30,8 +31,10 @@ search.addEventListener('keyup', (e) => {
       showPage(searchResults, 1);
       addPagination(searchResults);
     }
+
     if (searchResults.length === 0) {
       const main = document.querySelector('.main');
+      studentList.innerHTML = '';
       main.innerHTML = 'Nothing Found';
       // styles error message
       main.style.color = 'tomato';
@@ -39,11 +42,8 @@ search.addEventListener('keyup', (e) => {
       main.style.fontSize = '36px';
       main.style.fontWeight = 'bold';
 
-      showPage(searchResults, 1);
+      showPage(searchResults);
       addPagination(searchResults);
-    }
-    if (searchResults.length === 1) {
-      main.innerHTML = '';
     }
   }
 });
@@ -58,7 +58,6 @@ function showPage(list, page) {
   let startIndex = page * 9 - 9;
   let endIndex = page * 9;
 
-  const studentList = document.querySelector('.student-list');
   studentList.innerHTML = '';
 
   // Loop through data and using template literal display to screen
