@@ -19,25 +19,32 @@ search.addEventListener('keyup', (e) => {
   const searchInput = e.target.value.toLowerCase();
   let searchResults = [];
 
-  for (let i = 0; i <= data.length; i++) {
-    const StudentList = `${data[i].name.first.toLowerCase()} ${data[
+  for (let i = 0; i < data.length; i++) {
+    const studentName = `${data[i].name.first.toLowerCase()} ${data[
       i
     ].name.last.toLowerCase()}`;
 
-    if (StudentList.includes(searchInput)) {
+    if (studentName.includes(searchInput)) {
       searchResults.push(data[i]);
 
       showPage(searchResults, 1);
       addPagination(searchResults);
     }
-  }
-  if (searchResults.length === 0) {
-    const main = document.querySelector('.main');
-    const display = `<h2 style="color: tomato; font-size: 36px; font-weight: 800; text-align: center">
-      Nothing Was Found
-      </h2>`;
+    if (searchResults.length === 0) {
+      const main = document.querySelector('.main');
+      main.innerHTML = 'Nothing Found';
+      // styles error message
+      main.style.color = 'tomato';
+      main.style.textAlign = 'center';
+      main.style.fontSize = '36px';
+      main.style.fontWeight = 'bold';
 
-    main.insertAdjacentHTML('beforeend', display);
+      showPage(searchResults, 1);
+      addPagination(searchResults);
+    }
+    if (searchResults.length === 1) {
+      main.innerHTML = '';
+    }
   }
 });
 
