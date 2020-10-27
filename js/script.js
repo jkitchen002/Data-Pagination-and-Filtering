@@ -1,4 +1,7 @@
 const studentList = document.querySelector('.student-list');
+const found = document.querySelector('.not-found');
+const linkList = document.querySelector('.link-list');
+
 /*
 Create the search bar
 */
@@ -27,25 +30,15 @@ search.addEventListener('keyup', (e) => {
 
     if (studentName.includes(searchInput)) {
       searchResults.push(data[i]);
-
-      showPage(searchResults, 1);
-      addPagination(searchResults);
-    }
-
-    if (searchResults.length === 0) {
-      const main = document.querySelector('.main');
-      studentList.innerHTML = '';
-      main.innerHTML = 'Nothing Found';
-      // styles error message
-      main.style.color = 'tomato';
-      main.style.textAlign = 'center';
-      main.style.fontSize = '36px';
-      main.style.fontWeight = 'bold';
-
-      showPage(searchResults);
-      addPagination(searchResults);
     }
   }
+  if (searchResults.length === 0) {
+    found.style.display = 'block';
+  } else {
+    found.style.display = 'none';
+  }
+  showPage(searchResults, 1);
+  addPagination(searchResults);
 });
 
 /*
@@ -86,7 +79,7 @@ This function will create and insert/append the elements needed for the paginati
 //divide the students up onto different pages
 function addPagination(list) {
   const numOfPages = Math.ceil(list.length / 9); // The number of pages needed to show all of the students
-  const linkList = document.querySelector('.link-list');
+
   linkList.innerHTML = '';
   for (let i = 1; i <= numOfPages; i++) {
     linkList.insertAdjacentHTML(
