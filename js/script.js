@@ -1,3 +1,5 @@
+//global variables
+
 const studentList = document.querySelector('.student-list');
 const found = document.querySelector('.not-found');
 const linkList = document.querySelector('.link-list');
@@ -18,27 +20,31 @@ function searchBar() {
 searchBar();
 
 const search = document.querySelector('#search');
-
+// Event listener add to search bar upon key stroke
 search.addEventListener('keyup', (e) => {
-  const searchInput = e.target.value.toLowerCase();
+  const searchInput = e.target.value.toLowerCase(); //ensure all inputs are turned into case insensitive
   let searchResults = [];
 
   for (let i = 0; i < data.length; i++) {
+    // loops through first and last name of data.js
     const studentName = `${data[i].name.first.toLowerCase()} ${data[
       i
     ].name.last.toLowerCase()}`;
 
     if (studentName.includes(searchInput)) {
-      searchResults.push(data[i]);
+      // checks to see if what is typed in search bar matches data.js
+      searchResults.push(data[i]); // if a match adds student to empty array
     }
   }
+
+  //displays error message
   if (searchResults.length === 0) {
     found.style.display = 'block';
   } else {
     found.style.display = 'none';
   }
-  showPage(searchResults, 1);
-  addPagination(searchResults);
+  showPage(searchResults, 1); // displays student on screen
+  addPagination(searchResults); // displays pagination button on screen
 });
 
 /*
